@@ -4,56 +4,59 @@
 import hashlib
 import math
 import sys
-from pbkdf2 import pbkdf2_hex
 
 
-def load_dictionary (dictionary_file=None):
-	if dictionary_file is None:
-		dictionary_file = "words.txt"
+def load_dictionary(dictionary_file=None):
+    """Load a dictionary file - words separated by newlines"""
+    if dictionary_file is None:
+        dictionary_file = "words.txt"
 
-	with open (dictionary_file, 'rb') as f:
-		dictionary = f.read ().splitlines ()
-	
-	return dictionary
+    with open(dictionary_file, 'rb') as f:
+        dictionary = f.read().splitlines()
 
-
-def default_hasher (data):
-	return pbkdf2_hex (data, '', iterations=50000, keylen=32, hashfunc=hashlib.sha256)
+    return dictionary
 
 
-def hash_phrase (data, minimum_entropy=64, dictionary=None, hashfunc=default_hasher):
-	# Dictionary
-	if dictionary is None:
-		dictionary = load_dictionary ()
-	
-	dict_len = len (dictionary)
-	entropy_per_word = math.log (dict_len, 2)
-	num_words = int (math.ceil (minimum_entropy / entropy_per_word))
+def default_hasher(data):
+    """Simple md5 hash operation"""
+    m = hashlib.md5()
+    m.update(data.encode())
+    return m.hexdigest()
 
-	# Hash the data and convert to a big integer (converts as Big Endian)
-	hash = hashfunc (data)
-	available_entropy = len (hash) * 4
-	hash = int (hash, 16)
 
-	# Check entropy
-	if num_words * entropy_per_word > available_entropy:
-		raise Exception ("The output entropy of the specified hashfunc (%d) is too small." % available_entropy)
+def hash_phrase(data, minimum_entropy=64, dictionary=None, hashfunc=default_hasher, separator='-'):
+    """Hash a phrase into words"""
+    if dictionary is None:
+        dictionary = load_dictionary()
 
-	# Generate phrase
-	phrase = []
+    dict_len = len(dictionary)
+    entropy_per_word = math.log(dict_len, 2)
+    num_words = int(math.ceil(minimum_entropy / entropy_per_word))
 
-	for i in range (num_words):
-		remainder = hash % dict_len
-		hash = hash / dict_len
+    # Hash the data and convert to a big integer (converts as Big Endian)
+    hash_str = hashfunc(data)
+    available_entropy = len(hash_str) * 4
+    hash_str = int(hash_str, 16)
 
-		phrase.append (dictionary[remainder])
-	
-	return " ".join (phrase).lower().capitalize()
+    # Check entropy
+    if num_words * entropy_per_word > available_entropy:
+        raise Exception(
+            "The output entropy of the specified hashfunc (%d) is too small." % available_entropy)
+
+    # Generate phrase
+    phrase = []
+
+    for _ in range(num_words):
+        remainder = int(hash_str % dict_len)
+        hash_str = hash_str / dict_len
+        phrase.append(dictionary[remainder])
+
+    return separator.join([p.decode().lower().capitalize() for p in phrase])
 
 
 if __name__ == "__main__":
-	if len (sys.argv) != 2:
-		print "USAGE: hash-phrase.py DATA"
-		sys.exit (-1)
-	
-	print hash_phrase (sys.argv[1])
+    if len(sys.argv) != 2:
+        print("USAGE: hash-phrase.py DATA")
+        sys.exit(-1)
+
+    print(hash_phrase(sys.argv[1]))

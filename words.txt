@@ -5,7 +5,6 @@ zero
 and
 in
 two
-a
 nine
 to
 is
@@ -19,7 +18,6 @@ for
 are
 as
 was
-s
 with
 by
 from
@@ -83,7 +81,6 @@ into
 used
 such
 may
-i
 up
 town
 average
@@ -122,7 +119,6 @@ however
 located
 state
 th
-d
 name
 she
 if
@@ -130,7 +126,6 @@ where
 density
 history
 called
-m
 races
 household
 then
@@ -145,9 +140,7 @@ later
 west
 well
 while
-b
 white
-u
 often
 non
 university
@@ -158,11 +151,9 @@ system
 land
 south
 number
-c
 year
 through
 government
-e
 t
 children
 john
@@ -183,7 +174,6 @@ life
 several
 music
 general
-n
 same
 including
 before
@@ -191,7 +181,6 @@ together
 series
 now
 per
-x
 king
 each
 work
@@ -229,7 +218,6 @@ another
 party
 pacific
 example
-g
 game
 st
 still
@@ -240,12 +228,10 @@ major
 alone
 spread
 do
-f
 ii
 geography
 river
 husband
-r
 someone
 us
 best
@@ -281,7 +267,6 @@ versus
 home
 house
 way
-p
 man
 did
 capita
@@ -306,7 +291,6 @@ islander
 cdp
 church
 point
-l
 back
 due
 popular
@@ -327,13 +311,11 @@ cities
 make
 began
 island
-v
 considered
 given
 london
 band
 battle
-o
 just
 article
 off
@@ -342,14 +324,12 @@ version
 album
 down
 information
-h
 bc
 released
 site
 england
 college
 location
-j
 october
 france
 become
@@ -363,11 +343,9 @@ july
 should
 few
 local
-w
 former
 human
 william
-k
 service
 along
 son
@@ -650,7 +628,6 @@ career
 network
 your
 addition
-y
 richard
 religious
 green
@@ -926,7 +903,6 @@ enough
 domain
 recorded
 mid
-z
 done
 internet
 companies
@@ -1363,7 +1339,6 @@ shot
 png
 stations
 reported
-q
 got
 jesus
 proposed
